@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 初始化 及 注入quest -->
+    <bean id="knight" class="BraveKnight">
+        <constructor-arg ref="quest"></constructor-arg>
+    </bean>
+
+
+    <!-- 实例化 SlayDragonQuest -->
+    <bean id="quest" class="SlayDragonQuest">
+        <constructor-arg value="#{T(System).out}"></constructor-arg>
+    </bean>
+</beans>

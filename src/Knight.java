@@ -1,0 +1,3 @@
+interface Knight {
+    void embarkOnQuest();
+}
