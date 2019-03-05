@@ -30,5 +30,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="junit4.12" level="application" />
+    <orderEntry type="library" name="aspectjweaver-1.9.2" level="project" />
   </component>
 </module>

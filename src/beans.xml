@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- 初始化 及 注入quest -->
     <bean id="knight" class="BraveKnight">
@@ -13,4 +13,17 @@
     <bean id="quest" class="SlayDragonQuest">
         <constructor-arg value="#{T(System).out}"></constructor-arg>
     </bean>
+
+    <bean id="minstrel" class="Minstrel">
+        <constructor-arg value="#{T(System).out}"></constructor-arg>
+    </bean>
+
+    <aop:config>
+        <!--将 minstrel 声明为一个 切面-->
+        <aop:aspect ref="minstrel">
+            <aop:pointcut id="embarkPC" expression="execution(* *.embarkOnQuest(..))"/>
+            <aop:before pointcut-ref="embarkPC" method="singBeforeQuest"></aop:before>
+            <aop:after pointcut-ref="embarkPC" method="singAfterQuest"></aop:after>
+        </aop:aspect>
+    </aop:config>
 </beans>
