@@ -15,6 +15,12 @@ public class CDPlayerTest {
     @Autowired // <--- 指定 CompacteDisc bean自动注入到此处
     private CompactDisc cd;
 
+//    @Rule
+//    public final SystemOutRule log = new SystemOutRule().enableLog();
+
+    @Autowired
+    private CompactDisc player;
+
     @Test
     public void cdShouldNotBeNull() {
 
@@ -22,6 +28,14 @@ public class CDPlayerTest {
         assertNotNull(cd);
 
         System.out.println(">>> haha , got a cd Done here!");
+    }
+
+
+    @Test
+    public void play() {
+        player.play();
+        assertNotNull(player);
+//        assertEquals("Playing Sgt Pepper's lonely hearts club band by The Beatles", );
     }
 
 }
