@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 初始化 及 注入quest -->
+    <bean id="knight" class="BraveKnight">
+        <constructor-arg ref="quest"></constructor-arg>
+    </bean>
+
+
+    <!-- 实例化 SlayDragonQuest -->
+    <bean id="quest" class="SlayDragonQuest">
+        <constructor-arg value="#{T(System).out}"></constructor-arg>
+    </bean>
+
+    <bean id="minstrel" class="Minstrel">
+        <constructor-arg value="#{T(System).out}"></constructor-arg>
+    </bean>
+
+    <aop:config>
+        <!--将 minstrel 声明为一个 切面-->
+        <aop:aspect ref="minstrel">
+            <aop:pointcut id="embarkPC" expression="execution(* *.embarkOnQuest(..))"/>
+            <aop:before pointcut-ref="embarkPC" method="singBeforeQuest"></aop:before>
+            <aop:after pointcut-ref="embarkPC" method="singAfterQuest"></aop:after>
+        </aop:aspect>
+    </aop:config>
+
+
+    <!--<bean id="blackDisc" class="soundsystem.BlackDisc" c:title="Try" c:album="Pink">-->
+        <!--<constructor-arg value="Try"></constructor-arg>-->
+        <!--<constructor-arg value="Pink"></constructor-arg>-->
+    <!--</bean>-->
+
+
+    <bean id="user" class="BilibiliDemo.User">
+        <!--<constructor-arg index="0" type="java.lang.Integer" value="1"></constructor-arg>-->
+        <!--<constructor-arg index="1" type="java.lang.String" value="KOBE"></constructor-arg>-->
+        <constructor-arg name="name" value="KOBE"></constructor-arg>
+        <constructor-arg name="age" value="32"></constructor-arg>
+
+        <property name="name" value="MJH"></property>
+        <property name="uid" value="001"></property>
+
+    </bean>
+
+    <bean id="userServiceImp" class="BilibiliDemo.UserServiceImp">
+        <property name="user" ref="user"></property>
+    </bean>
+</beans>
