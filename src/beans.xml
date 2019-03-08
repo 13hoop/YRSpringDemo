@@ -26,4 +26,26 @@
             <aop:after pointcut-ref="embarkPC" method="singAfterQuest"></aop:after>
         </aop:aspect>
     </aop:config>
+
+
+    <!--<bean id="blackDisc" class="soundsystem.BlackDisc" c:title="Try" c:album="Pink">-->
+        <!--<constructor-arg value="Try"></constructor-arg>-->
+        <!--<constructor-arg value="Pink"></constructor-arg>-->
+    <!--</bean>-->
+
+
+    <bean id="user" class="BilibiliDemo.User">
+        <!--<constructor-arg index="0" type="java.lang.Integer" value="1"></constructor-arg>-->
+        <!--<constructor-arg index="1" type="java.lang.String" value="KOBE"></constructor-arg>-->
+        <constructor-arg name="name" value="KOBE"></constructor-arg>
+        <constructor-arg name="age" value="32"></constructor-arg>
+
+        <property name="name" value="MJH"></property>
+        <property name="uid" value="001"></property>
+
+    </bean>
+
+    <bean id="userServiceImp" class="BilibiliDemo.UserServiceImp">
+        <property name="user" ref="user"></property>
+    </bean>
 </beans>
